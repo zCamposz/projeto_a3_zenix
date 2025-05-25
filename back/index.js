@@ -21,5 +21,5 @@ app.post('/pergunte-ao-gemini', async (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log('Servidor rodando em http://localhost:3000');
+  console.log('Servidor rodando em http://localhost:3000/hello-world');
 });
