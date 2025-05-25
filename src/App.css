@@ -18,9 +18,10 @@
 .main-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: stretch;
+  justify-content: flex-start;
 }
+
 
 /* Adiciona um espaçamento entre o Header e o Mapa */
 .map-container-spacer {
