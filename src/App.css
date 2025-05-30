@@ -1,59 +1,36 @@
-/* Garantindo que a página ocupe a altura total da tela */
-.app {
-  display: flex;
-  height: 100vh;
-  flex-direction: row;
+html, body, #root {
+  padding: 0;
+  font-family: Arial, sans-serif;
 }
 
-/* Container de conteúdo para a parte direita da tela */
-.content-area {
-  display: flex;
-  flex-direction: column;
-  width: calc(100% - 220px); /* O conteúdo vai ocupar o espaço à direita do sidebar */
-  margin-left: 700px;  /* Distância do Sidebar */
+.container {
+  max-width: 100%;       /* largura máxima do conteúdo */
+  margin: 0 auto;         /* centraliza horizontalmente */
   padding: 20px;
-}
-
-/* Estilo para o Mapa */
-.main-content {
-  display: flex;
+  box-sizing: border-box;
+  min-height: 100vh;      /* ocupar altura da tela inteira */
+  display: contents;
   flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
 }
 
-
-/* Adiciona um espaçamento entre o Header e o Mapa */
-.map-container-spacer {
-  height: 30px; /* Ajuste conforme necessário */
-}
-
-/* Sidebar fixado à esquerda */
-.sidebar {
-  width: 220px;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
-  color: white;
-}
-
-/* Ajuste no Mapa para largura e altura adequadas */
-.map-container {
-  width: 100%;
-  height: 500px; /* Defina a altura do mapa */
-}
-
-/* Header e Footer com estilo simples */
 header, footer {
   text-align: center;
-  padding: 10px;
+  padding: 15px 20px;
   background-color: #333;
   color: white;
+  border-radius: 10px;
 }
 
-footer {
-  margin-top: 20px;
+main {
+  display: contents;
+  justify-content: center; /* centro horizontal */
+  align-items: center;     /* centro vertical */
+  padding: 10px;
 }
+
+.app, main, .content-area {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+

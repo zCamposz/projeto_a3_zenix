@@ -1,0 +1,100 @@
+.headerbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background-color: #020202;
+ border-bottom: 1px solid #ffffff;
+}
+
+.left-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo {
+  height: 60px;
+  cursor: pointer;
+}
+
+button {
+  background-color: white;
+  color: black;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px black;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ccc;
+}
+
+.search-bar {
+  width: 500px;
+  height: 100px;
+   flex-shrink: 0;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.4rem 0.8rem;
+  border-radius: 100px;
+  border: 1px solid black;
+  font-size: 1rem;
+}
+
+.left-section {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+
+.right-section {
+  flex-grow: 1;         /* Ocupa o espaço restante */
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 1rem;
+}
+
+.right-section input {
+      width: 100%;     
+    max-width: 400px; 
+    padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+.search-container {
+  display: flex;
+  align-items: center;
+  background: #f0f0f0;
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-container input {
+  flex: 1;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  background: transparent;
+}
+
+.search-button {
+  background-color: transparent;
+  border: none;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #333;
+}
+
+.search-button:hover {
+  background-color: #ddd;
+}

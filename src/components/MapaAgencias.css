@@ -1,6 +1,4 @@
-/* src/components/MapaAgencias.css */
 .map-container {
-    width: 100%;
-    height: calc(100vh - 60px); /* Ajuste para tirar o espaço do Header */
-  }
-  
+  width: 100%;
+  height: calc(100vh - 60px);
+}

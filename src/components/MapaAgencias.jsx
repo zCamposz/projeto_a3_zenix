@@ -5,7 +5,6 @@ import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import shadow from 'leaflet/dist/images/marker-shadow.png'
 import { Dialog } from 'primereact/dialog'
-import { Button } from 'primereact/button'
 import { Panel } from 'primereact/panel'
 import 'primereact/resources/themes/lara-dark-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
@@ -14,7 +13,6 @@ import 'primeicons/primeicons.css'
 L.Marker.prototype.options.icon = L.icon({ iconUrl: icon, shadowUrl: shadow })
 
 export default function MapaAgencias() {
-  const [respostas, setRespostas] = useState({})
   const [dialogInfo, setDialogInfo] = useState(null)
   const [visible, setVisible] = useState(false)
 
@@ -49,45 +47,43 @@ export default function MapaAgencias() {
       setDialogInfo({ ...agencia, resposta: data.resposta })
       setVisible(true)
     } catch (error) {
+      console.error('Erro na consulta:', error)
       setDialogInfo({ ...agencia, resposta: 'Erro ao consultar IA.' })
       setVisible(true)
     }
   }
 
-  return (
-    <div className="flex justify-center w-full p-4">
-      <div className="w-full max-w-6xl">
-        <Panel header="Bem-vindo ao Zenix!" className="mb-4">
-          <MapContainer center={[-23.55, -46.63]} zoom={12} style={{ height: '80vh', width: '100%' }}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            {agencias.map((agencia) => (
-              <Marker
-                key={agencia.id}
-                position={[agencia.lat, agencia.lng]}
-                eventHandlers={{ click: () => consultarIA(agencia) }}
-              />
-            ))}
-          </MapContainer>
-        </Panel>
+return (
+  <div className="w-full p-4 bg-gray-100 min-h-screen">
+    <Panel header="Bem-vindo ao Zenix!" className="mb-4" style={{ width: '100%' }}>
+      <MapContainer center={[-23.55, -46.63]} zoom={12} style={{ height: '80vh', width: '100%' }}>
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {agencias.map((agencia) => (
+          <Marker
+            key={agencia.id}
+            position={[agencia.lat, agencia.lng]}
+            eventHandlers={{ click: () => consultarIA(agencia) }}
+          />
+        ))}
+      </MapContainer>
+    </Panel>
 
-        <Dialog
-          header={dialogInfo ? dialogInfo.nome : ''}
-          visible={visible}
-          onHide={() => setVisible(false)}
-          position="right"
-          style={{ width: '30vw' }}
-          className="p-dialog-dark"
-          closable={true}
-          closeIcon={<i className="pi pi-times" style={{ fontSize: '1.25rem' }} />}
-        >
-          {dialogInfo && (
-            <div className="space-y-2">
-              <p><i className="pi pi-map-marker mr-2" />Região: {dialogInfo.regiao}</p>
-              <p className="whitespace-pre-wrap text-sm">{dialogInfo.resposta}</p>
-            </div>
-          )}
-        </Dialog>
-      </div>
-    </div>
-  )
-}
+    <Dialog
+      header={dialogInfo ? dialogInfo.nome : ''}
+      visible={visible}
+      onHide={() => setVisible(false)}
+      position="right"
+      style={{ width: '30vw' }}
+      className="p-dialog-dark"
+      closable={true}
+      closeIcon={<i className="pi pi-times" style={{ fontSize: '1.25rem' }} />}
+    >
+      {dialogInfo && (
+        <div className="space-y-2">
+          <p><i className="pi pi-map-marker mr-2" />Região: {dialogInfo.regiao}</p>
+          <p className="whitespace-pre-wrap text-sm">{dialogInfo.resposta}</p>
+        </div>
+      )}
+    </Dialog>
+  </div>
+)}
