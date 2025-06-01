@@ -1,11 +1,13 @@
 {
   "name": "back",
   "version": "1.0.0",
+  "type": "module",
   "main": "zenix_api.js",
-  "scripts": {
-    "start:dev": "node --watch index.js",
-    "start": "node index.js"
+"scripts": {
+  "start:dev": "node --watch zenix_api.js",
+  "start": "node zenix_api.js"
   },
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
