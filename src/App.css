@@ -1,36 +1,51 @@
+/* Reset básico */
 html, body, #root {
+  height: 100%;
+  margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
 }
 
-.container {
-  max-width: 100%;       /* largura máxima do conteúdo */
-  margin: 0 auto;         /* centraliza horizontalmente */
-  padding: 20px;
-  box-sizing: border-box;
-  min-height: 100vh;      /* ocupar altura da tela inteira */
-  display: contents;
+/* Container geral da aplicação */
+.app-container {
+  display: flex;
   flex-direction: column;
+  min-height: 100vh;
 }
 
+/* Header fixo no topo */
+.headerbar {
+  flex-shrink: 0;
+  margin-bottom: 1rem;
+}
+
+/* Conteúdo principal */
+main.center {
+  flex: 1;
+  padding: 1rem;
+  display: center;
+  justify-content: center;
+  align-items: stretch;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Painel do mapa */
+.map-wrapper {
+  width: 100%;
+  height: 80vh;
+}
+
+/* Estilo do Header e Footer */
 header, footer {
   text-align: center;
-  padding: 15px 20px;
-  background-color: #333;
+  padding: 1rem;
+  background-color: black;
   color: white;
   border-radius: 10px;
 }
 
-main {
-  display: contents;
-  justify-content: center; /* centro horizontal */
-  align-items: center;     /* centro vertical */
-  padding: 10px;
+/* Footer fixo no final da tela apenas quando o conteúdo for pequeno */
+footer {
+  flex-shrink: 0;
+  margin-top: 1rem;
 }
-
-.app, main, .content-area {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-

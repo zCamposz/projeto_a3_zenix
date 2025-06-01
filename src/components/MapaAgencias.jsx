@@ -54,9 +54,10 @@ export default function MapaAgencias() {
   }
 
 return (
-  <div className="w-full p-4 bg-gray-100 min-h-screen">
-    <Panel header="Bem-vindo ao Zenix!" className="mb-4" style={{ width: '100%' }}>
-      <MapContainer center={[-23.55, -46.63]} zoom={12} style={{ height: '80vh', width: '100%' }}>
+<div className="w-full p-4 bg-gray-100 flex flex-col items-center gap-4">
+<Panel header="Bem-vindo ao Zenix!" className="w-full max-w-screen-xl mb-4">
+  <div style={{ width: '100%', height: '80vh' }}>      
+  <MapContainer center={[-23.55, -46.63]} zoom={12} style={{ width: '100%', height: '80vh' }} > 
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         {agencias.map((agencia) => (
           <Marker
@@ -66,6 +67,7 @@ return (
           />
         ))}
       </MapContainer>
+      </div>
     </Panel>
 
     <Dialog

@@ -1,6 +1,6 @@
 .headerbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space;
   align-items: center;
   padding: 0.5rem 1rem;
   background-color: #020202;
@@ -10,7 +10,7 @@
 .left-content {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
 
 .logo {
@@ -31,26 +31,11 @@ button:hover {
   background-color: #ccc;
 }
 
-.search-bar {
-  width: 500px;
-  height: 100px;
-   flex-shrink: 0;
-}
-
-.search-bar input {
-  width: 100%;
-  padding: 0.4rem 0.8rem;
-  border-radius: 100px;
-  border: 1px solid black;
-  font-size: 1rem;
-}
-
 .left-section {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
-
 
 .right-section {
   flex-grow: 1;         /* Ocupa o espaço restante */
@@ -71,9 +56,9 @@ button:hover {
   display: flex;
   align-items: center;
   background: #f0f0f0;
-  border-radius: 6px;
+  border-radius: 8px;
   overflow: hidden;
-  max-width: 400px;
+  max-width: 430px;
   width: 100%;
 }
 
@@ -89,10 +74,10 @@ button:hover {
 .search-button {
   background-color: transparent;
   border: none;
-  padding: 0.4rem 0.6rem;
+  padding: 0.5rem 0.6rem;
   cursor: pointer;
   font-size: 1rem;
-  color: #333;
+  color: #000000;
 }
 
 .search-button:hover {

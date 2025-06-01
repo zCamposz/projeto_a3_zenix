@@ -10,16 +10,20 @@ import AgenciasPorRegiao from './components/AgenciasPorRegiao'
 function App() {
   return (
     <Router>
-      <div className="app">
-        <HeaderBar /> {/* Aqui */}
+      <div className="app-container">
+        <HeaderBar /> 
+         <main className="main-center">
         <Routes>
           <Route path="/" element={<MapaAgencias />} />
             <Route path="/agencia/:id" element={<DetalhesAgencia />} />
             <Route path="/regiao/:regiao" element={<AgenciasPorRegiao />} />
           </Routes>
-        <Footer />
+          </main>
       </div>
+      <Footer />
     </Router>
+    
+    
   )
 }
 
