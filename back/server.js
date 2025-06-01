@@ -7,7 +7,6 @@ app.get('/hello-world', (req, res) => {
   res.send('Olá, mundo!');
 });
 
-// Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });

@@ -35,7 +35,7 @@ const HeaderBar = () => {
         <div className="search-container">
           <input
             type="text"
-            placeholder="Pergunte ao gemini..."
+            placeholder="Coloque a região da agência"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleKeyDown}
