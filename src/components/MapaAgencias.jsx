@@ -9,17 +9,21 @@ import { Panel } from 'primereact/panel'
 import 'primereact/resources/themes/lara-dark-indigo/theme.css'
 import 'primereact/resources/primereact.min.css'
 import 'primeicons/primeicons.css'
+import './PerguntaBox.css'
 
 L.Marker.prototype.options.icon = L.icon({ iconUrl: icon, shadowUrl: shadow })
 
 export default function MapaAgencias() {
   const [dialogInfo, setDialogInfo] = useState(null)
   const [visible, setVisible] = useState(false)
+  const [pergunta, setPergunta] = useState('')
+  const [respostaIA, setRespostaIA] = useState('')
+  const [carregando, setCarregando] = useState(false)
 
   const agencias = [
   {
     id: 1,
-    nome: 'Agência Bradesco Paulista',
+    nome: 'Agência  Paulista',
     endereco: 'Av. Paulista, 1230 - Bela Vista, São Paulo - SP',
     lat: -23.561684,
     lng: -46.655981,
@@ -27,7 +31,7 @@ export default function MapaAgencias() {
   },
   {
     id: 2,
-    nome: 'Agência Bradesco Santana',
+    nome: 'Agência  Santana',
     endereco: 'Rua Voluntários da Pátria, 4000 - Santana, São Paulo - SP',
     lat: -23.500998,
     lng: -46.624657,
@@ -35,7 +39,7 @@ export default function MapaAgencias() {
   },
   {
     id: 3,
-    nome: 'Agência Bradesco Mooca',
+    nome: 'Agência  Mooca',
     endereco: 'Rua da Mooca, 1900 - Mooca, São Paulo - SP',
     lat: -23.554963,
     lng: -46.589157,
@@ -43,7 +47,7 @@ export default function MapaAgencias() {
   },
   {
     id: 4,
-    nome: 'Agência Bradesco Santo Amaro',
+    nome: 'Agência  Santo Amaro',
     endereco: 'Av. Adolfo Pinheiro, 1200 - Santo Amaro, São Paulo - SP',
     lat: -23.651920,
     lng: -46.705317,
@@ -51,7 +55,7 @@ export default function MapaAgencias() {
   },
   {
     id: 5,
-    nome: 'Agência Bradesco Lapa',
+    nome: 'Agência  Lapa',
     endereco: 'Rua Clélia, 2300 - Lapa, São Paulo - SP',
     lat: -23.525435,
     lng: -46.685489,
@@ -340,52 +344,94 @@ const consultarIA = async (agencia) => {
     }
   }
 
-  return (
-    <div className="w-full p-4 bg-gray-100 flex flex-col items-center gap-4">
-      <Panel className="w-full max-w-screen-xl mb-4">
-        <div className="text-center py-6">
-          <h2 className="text-3xl font-bold text-indigo-600 flex items-center justify-center gap-2">
-            Bem-vindo ao <span className="text-indigo-800">Zenix</span>
-          </h2>
-          <p className="mt-2 text-gray-600 text-sm">
-            <h3>Explore o mapa abaixo para ver nossas agências por região.</h3>
-          </p>
-        </div>
+    const perguntarIA = async () => {
+    if (!pergunta.trim()) return
+    setCarregando(true)
+    try {
+      const res = await fetch('http://localhost:3001/agencia/analise', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ pergunta })
+      })
+      const data = await res.json()
+      setRespostaIA(data.resposta || 'Resposta indisponível.')
+    } catch (error) {
+      setRespostaIA('Erro ao obter resposta da IA.')
+    } finally {
+      setCarregando(false)
+    }
+  }
 
-        <div style={{ width: '100%', height: '80vh', backgroundColor: 'black', padding: '1rem' }}>
-            <MapContainer center={[-23.55, -46.63]} zoom={12} style={{ width: '100%', height: '100%' }}>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+return (
+  <div className="w-full p-4 bg-gray-100 flex flex-col items-center gap-4">
+    <Panel className="w-full max-w-screen-xl mb-4">
+      <div className="text-center py-6">
+        <h2 className="text-3xl font-bold text-indigo-600 flex items-center justify-center gap-2">
+          Bem-vindo ao <span className="text-indigo-800">Zenix</span>
+        </h2>
+        <p className="mt-2 text-gray-600 text-sm">
+          <h3>Explore o mapa abaixo para ver nossas agências por região.</h3>
+        </p>
+      </div>
+
+      {/* Caixa de Pergunta e Resposta */}
+      <div className="w-full flex justify-center mb-6">
+        <div className="ia-box">
+          <h3>Fale com a Zenix IA</h3>
+          <form onSubmit={(e) => { e.preventDefault(); perguntarIA(); }}>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Digite sua pergunta..."
+                value={pergunta}
+                onChange={(e) => setPergunta(e.target.value)}
               />
-              {agencias.map((agencia) => (
-                <Marker
-                  key={agencia.id}
-                  position={[agencia.lat, agencia.lng]}
-                  eventHandlers={{ click: () => consultarIA(agencia) }}
-                />
-              ))}
-            </MapContainer>
-          </div>
-      </Panel>
+              <button type="submit">
+                Perguntar
+              </button>
+            </div>
+          </form>
+          {carregando && <p className="text-sm text-gray-500 mt-2">Consultando IA...</p>}
+          {respostaIA && !carregando && (
+            <p className="resposta">{respostaIA}</p>
+          )}
+        </div>
+      </div>
 
-      <Dialog
-        header={dialogInfo ? dialogInfo.nome : ''}
-        visible={visible}
-        onHide={() => setVisible(false)}
-        position="right"
-        style={{ width: '30vw' }}
-        className="p-dialog-dark"
-        closable={true}
-        closeIcon={<i className="pi pi-times" style={{ fontSize: '1.25rem' }} />}
-      >
-        {dialogInfo && (
-          <div className="space-y-2">
-            <p><i className="pi pi-map-marker mr-2" />Região: {dialogInfo.regiao}</p>
-            <p><i className="pi pi-home mr-2" />Endereço: {dialogInfo.endereco}</p>
-            <p className="whitespace-pre-wrap text-sm">{dialogInfo.resposta}</p>
-          </div>
-        )}
-      </Dialog>
-    </div>
-  )
+      <div style={{ width: '100%', height: '80vh', backgroundColor: 'black', padding: '1rem' }}>
+        <MapContainer center={[-23.55, -46.63]} zoom={12} style={{ width: '100%', height: '100%' }}>
+          <TileLayer
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {agencias.map((agencia) => (
+            <Marker
+              key={agencia.id}
+              position={[agencia.lat, agencia.lng]}
+              eventHandlers={{ click: () => consultarIA(agencia) }}
+            />
+          ))}
+        </MapContainer>
+      </div>
+    </Panel>
+
+    <Dialog
+      header={dialogInfo ? dialogInfo.nome : ''}
+      visible={visible}
+      onHide={() => setVisible(false)}
+      position="right"
+      style={{ width: '30vw' }}
+      className="p-dialog-dark"
+      closable={true}
+      closeIcon={<i className="pi pi-times" style={{ fontSize: '1.25rem' }} />}
+    >
+      {dialogInfo && (
+        <div className="space-y-2">
+          <p><i className="pi pi-map-marker mr-2" />Região: {dialogInfo.regiao}</p>
+          <p><i className="pi pi-home mr-2" />Endereço: {dialogInfo.endereco}</p>
+          <p className="whitespace-pre-wrap text-sm">{dialogInfo.resposta}</p>
+        </div>
+      )}
+    </Dialog>
+  </div>
+)
 }

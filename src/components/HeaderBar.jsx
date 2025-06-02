@@ -29,6 +29,7 @@ const HeaderBar = () => {
         <button onClick={() => navigate('/regiao/norte')}>Zona Norte</button>
         <button onClick={() => navigate('/regiao/central')}>Zona Central</button>
         <button onClick={() => navigate('/regiao/leste')}>Zona Leste</button>
+        <button onClick={() => navigate('/sobre')}>Sobre nós</button>
       </div>
 
       <div className="right-section">

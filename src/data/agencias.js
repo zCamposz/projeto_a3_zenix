@@ -1,7 +1,7 @@
 const agencias = [
   {
     id: 1,
-    nome: 'Agência Bradesco Paulista',
+    nome: 'Agência  Paulista',
     endereco: 'Av. Paulista, 1230 - Bela Vista, São Paulo - SP',
     regiao: 'Central',
     horario: '08h às 17h',
@@ -10,7 +10,7 @@ const agencias = [
   },
   {
     id: 2,
-    nome: 'Agência Bradesco Santana',
+    nome: 'Agência  Santana',
     endereco: 'Rua Voluntários da Pátria, 4000 - Santana, São Paulo - SP',
     regiao: 'Norte',
     horario: '09h às 16h',
@@ -19,7 +19,7 @@ const agencias = [
   },
   {
     id: 3,
-    nome: 'Agência Bradesco Mooca',
+    nome: 'Agência  Mooca',
     endereco: 'Rua da Mooca, 1900 - Mooca, São Paulo - SP',
     regiao: 'Leste',
     horario: '08h às 17h',
@@ -28,7 +28,7 @@ const agencias = [
   },
   {
     id: 4,
-    nome: 'Agência Bradesco Santo Amaro',
+    nome: 'Agência  Santo Amaro',
     endereco: 'Av. Adolfo Pinheiro, 1200 - Santo Amaro, São Paulo - SP',
     regiao: 'Sul',
     horario: '10h às 18h',
@@ -37,7 +37,7 @@ const agencias = [
   },
   {
     id: 5,
-    nome: 'Agência Bradesco Lapa',
+    nome: 'Agência  Lapa',
     endereco: 'Rua Clélia, 2300 - Lapa, São Paulo - SP',
     regiao: 'Oeste',
     horario: '08h às 17h',

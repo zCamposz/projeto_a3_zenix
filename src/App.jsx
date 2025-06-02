@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import DetalhesAgencia from './components/DetalhesAgencia'
 import MapaAgencias from './components/MapaAgencias'
 import AgenciasPorRegiao from './components/AgenciasPorRegiao'
+import SobreNos from './components/SobreNos'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<MapaAgencias />} />
             <Route path="/agencia/:id" element={<DetalhesAgencia />} />
             <Route path="/regiao/:regiao" element={<AgenciasPorRegiao />} />
+            <Route path="/sobre" element={<SobreNos />} />
           </Routes>
           </main>
       </div>
